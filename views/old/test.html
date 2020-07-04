@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>动态创建div</title>
+</head>
+ 
+<body>
+ 
+<input type="button" value="js动态添加div"  onclick="addDiv()"/>
+ 
+</body>
+ 
+<script>
+function addDiv(){
+//创建一个div
+var div = document.createElement('div');
+ 
+//设置div的属性
+div.innerHTML = '<h1>js动态创建的div</h1>'; //设置显示的数据，可以是标签．
+div.style.background = "blue";//设置css样式,s设置背景颜色\
+var bo = document.body;//获取body对象.
+//动态插入到body中
+bo.insertBefore(div,bo.lastChild);
+}
+ 
+</script>
+ 
+</html>

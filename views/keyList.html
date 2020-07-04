@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head> 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EOS 钱包 - 账号模块</title>
+
+    <script src="js/lib/jquery-3.3.1.min.js"></script>
+    <script src="/js/lib/jquery.url.js"></script>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Custom Font Icons CSS-->
+    <link rel="stylesheet" href="css/font.css">
+    <!-- Google fonts - Muli-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+  </head>
+  <body>
+    <header class="header">   
+      <nav class="navbar navbar-expand-lg">        
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+          <div class="navbar-header">
+            <!-- Navbar Header--><div class="navbar-brand">
+              <div class="brand-text brand-big visible text-uppercase"><strong class="text-primary">EOS</strong><strong>账号模块</strong></div>
+              <div class="brand-text brand-sm"><strong class="text-primary">账</strong><strong>号</strong></div></div>
+            <!-- Sidebar Toggle Btn-->
+            <button class="sidebar-toggle"><i class="fa fa-long-arrow-left"></i></button>
+          </div>
+          <div class="list-inline-item logout">                   
+              <a id="logout" href="wallet.html" class="nav-link"> 
+                <span class="d-none d-sm-inline">Logout </span>
+                <i class="icon-logout"></i>
+              </a>
+            </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="d-flex align-items-stretch">
+      <!-- Sidebar Navigation-->
+      <nav id="sidebar">
+        <!-- Sidebar Header-->
+        <div class="sidebar-header d-flex align-items-center">
+          <div class="avatar"><img src="img/my/eos.png" alt="..." class="img-fluid rounded-circle"></div>
+          <div class="title">
+            <h1 class="h5" id="current-wallet">EOS区块链钱包</h1>
+            <p>当前钱包</p>
+          </div>
+        </div>
+
+        <!-- Sidebar Navidation Menus-->
+        <span class="heading">钱包</span>
+        <ul class="list-unstyled">
+          <li class="active"><a href="keyList.html"> <i class="icon-grid"></i>公私钥列表 </a></li>
+          <li><a onclick="importPrivatekey()"> <i class="icon-logout"></i>导入私钥 </a></li>
+          <li><a href="accountList.html"> <i class="icon-writing-whiteboard"></i>账号列表 </a></li>
+         
+          <li><a href="accountNew.html"> <i class="icon-home"></i>创建账号 </a></li>
+          <li><a href="mnemonic.html"> <i class="icon-chart"></i>助记词 </a></li>
+        </ul>
+
+        <span class="heading">账号</span>
+        <ul class="list-unstyled">
+            <li><a href="accountInfo.html"> <i class="fa fa-bar-chart"></i>账号详情 </a></li>
+            <li><a href="transaction.html"> <i class="icon-padnote"></i>代币转账 </a></li>
+           
+          <li> <a href="vote.html"> <i class="icon-settings"></i>投票 </a></li>
+          
+        </ul>
+
+        <span class="heading">资源</span>
+        <ul class="list-unstyled">
+            <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-windows"></i>资源管理 </a>
+              <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                <li><a href="ram.html">RAM</a></li>
+                <li><a href="net.html">NET</a></li>
+                <li><a href="cpu.html">CPU</a></li>
+              </ul>
+            </li>
+          </ul>
+
+      </nav>
+
+      
+      <!-- Sidebar Navigation end-->
+      <div class="page-content">
+        <!-- Page Header-->
+        <div class="page-header no-margin-bottom">
+          <div class="container-fluid">
+            <h2 class="h5 no-margin-bottom">钱包公私钥列表</h2>
+          </div>
+        </div>
+        <!-- Breadcrumb-->
+        <div class="container-fluid">
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a onclick="getPublickeyList()">输入密码</a></li>
+            <li class="breadcrumb-item active">输入当前钱包账号密码即可查看        </li>
+          </ul>
+        </div>
+        <section class="no-padding-top">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="block margin-bottom-sm">
+                  <div class="title"><strong>公私钥列表</strong></div>
+                  <div class="table-responsive"> 
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th>公钥</th>
+                          <th>私钥</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody id = "key-list">
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+           
+              
+              
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <div class="footer__block block no-margin-bottom">
+            <div class="container-fluid text-center">
+              
+              <p class="no-margin-bottom">Copyright &copy; 2019 1552187 Yuan Hexin.</p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <!-- JavaScript files-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="js/front.js"></script>
+
+    <script src="js/new/keylist.js"></script>
+    <script src="js/new/importkey.js"></script>
+  </body>
+</html>
